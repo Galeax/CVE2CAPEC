@@ -93,7 +93,9 @@ python technique2defend.py
 
 ## License
 
-This project is released under the MIT license.
+This project is released under the GNU General Public License version 3 (the GPL).
+
+For commercial use where you need to not be using the GPL, please contact us at `contact [AT] galeax.com` for additional options.
 
 ## Contact
 
