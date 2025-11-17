@@ -1,11 +1,11 @@
 import json
 import pandas as panda
 
-TECHNIQUES_ENTERPRISE_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.0/enterprise-attack/enterprise-attack-v18.0-techniques.xlsx"
+TECHNIQUES_ENTERPRISE_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.1/enterprise-attack/enterprise-attack-v18.1-techniques.xlsx"
 ENTERPRISE_XSLX_CASE = 9
-TECHNIQUES_MOBILE_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.0/mobile-attack/mobile-attack-v18.0-techniques.xlsx"
+TECHNIQUES_MOBILE_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.1/mobile-attack/mobile-attack-v18.1-techniques.xlsx"
 MOBILE_XSLX_CASE = 10
-TECHNIQUES_ICS_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.0/ics-attack/ics-attack-v18.0-techniques.xlsx"
+TECHNIQUES_ICS_FILE_URL = "https://attack.mitre.org/docs/attack-excel-files/v18.1/ics-attack/ics-attack-v18.1-techniques.xlsx"
 ICS_XSLX_CASE = 9
 TECHNIQUES_FILE = "resources/techniques_db.json"
 
