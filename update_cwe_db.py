@@ -20,7 +20,7 @@ def download_cwe():
     with ZipFile("cwec_latest.xml.zip", 'r') as zip_ref:
         zip_ref.extractall()
     os.remove("cwec_latest.xml.zip")
-    file_name = re.search(r"cwec_v\d+\.\d+\.xml", " ".join(os.listdir())).group()
+    file_name = re.search(r"cwec_v[\d\.]+\.xml", " ".join(os.listdir())).group()
     file = minidom.parse(file_name)
     os.remove(file_name)
     return file
