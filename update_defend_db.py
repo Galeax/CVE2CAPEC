@@ -4,7 +4,7 @@ import requests
 import os
 
 TECHNIQUES_FILE = 'resources/techniques_db.json'
-DEFENDE_SITE = 'https://d3fend.mitre.org/api/offensive-technique/attack/'
+DEFEND_SITE = 'https://d3fend.mitre.org/api/offensive-technique/attack/'
 
 def load_techniques():
     try:
@@ -23,7 +23,7 @@ def update_defend_techniques():
         with open(file_path, 'w') as f:
             for technique_id in tqdm(techniques, desc="Updating D3FEND techniques", unit="technique"):
                 defend = {technique_id: []}
-                response = requests.get(f"{DEFENDE_SITE}{technique_id}.json")
+                response = requests.get(f"{DEFEND_SITE}{technique_id}.json")
                 if response.status_code == 200:
                     result = response.json()
                     for key in result.get("off_to_def").get("results").get("bindings"):
