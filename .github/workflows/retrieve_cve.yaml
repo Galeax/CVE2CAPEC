@@ -8,13 +8,13 @@ on:
 jobs:
   retrieve_cve:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -28,16 +28,22 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: python retrieve_cve.py
 
-      - name: Commit and push changes
+      - name: Commit and push lastUpdate.txt
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "githu-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add lastUpdate.txt
-          git diff --quiet && git diff --staged --quiet || git add results/new_cves.jsonl
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add lastUpdate.txt
           git diff --staged --quiet || git commit -m "Retrieve new CVEs"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload new_cves.jsonl artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-cves-initial
+          path: results/new_cves.jsonl
+          retention-days: 1
 
   retrieve_cwe:
     runs-on: ubuntu-latest
@@ -45,10 +51,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -59,30 +65,33 @@ jobs:
 
       - name: Pull latest changes
         run: git pull
+
+      - name: Download new_cves.jsonl artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: new-cves-initial
+          path: results/
 
       - name: Retrieve CWE
         run: python cve2cwe.py
 
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "githu-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add results/new_cves.jsonl
-          git diff --staged --quiet || git commit -m "Retrieve CWE from new CVEs"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload new_cves.jsonl artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-cves-cwe
+          path: results/new_cves.jsonl
+          retention-days: 1
 
   retrieve_capec:
     runs-on: ubuntu-latest
-    needs : retrieve_cwe
+    needs: retrieve_cwe
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -93,30 +102,33 @@ jobs:
 
       - name: Pull latest changes
         run: git pull
+
+      - name: Download new_cves.jsonl artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: new-cves-cwe
+          path: results/
 
       - name: Retrieve CAPEC
         run: python cwe2capec.py
 
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "githu-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add results/new_cves.jsonl
-          git diff --staged --quiet || git commit -m "Retrieve CAPEC from new CVEs's CWE"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+      - name: Upload new_cves.jsonl artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-cves-capec
+          path: results/new_cves.jsonl
+          retention-days: 1
+
   retrieve_techniques:
     runs-on: ubuntu-latest
     needs: retrieve_capec
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -128,31 +140,42 @@ jobs:
       - name: Pull latest changes
         run: git pull
 
+      - name: Download new_cves.jsonl artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: new-cves-capec
+          path: results/
+
       - name: Retrieve TECHNIQUES
         run: python capec2technique.py
 
-      - name: Commit and push changes
+      - name: Commit and push database updates
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "githu-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add results/new_cves.jsonl
-          git diff --quiet && git diff --staged --quiet || git add lastUpdate.txt
-          git diff --quiet && git diff --staged --quiet || git add database/*.jsonl
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add database/*.jsonl
           git diff --staged --quiet || git commit -m "Retrieve new CVEs and update CVE DB"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
+      - name: Upload new_cves.jsonl artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-cves-techniques
+          path: results/new_cves.jsonl
+          retention-days: 1
+
   retrieve_defend:
     runs-on: ubuntu-latest
     needs: retrieve_techniques
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -164,15 +187,20 @@ jobs:
       - name: Pull latest changes
         run: git pull
 
+      - name: Download new_cves.jsonl artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: new-cves-techniques
+          path: results/
+
       - name: Retrieve D3FEND mappings from TECHNIQUES
         run: python technique2defend.py
 
-      - name: Commit and push changes
+      - name: Commit and push database updates
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "githu-actions@users.noreply.github.com"
-          # adjust paths here if your script writes elsewhere
-          git diff --quiet && git diff --staged --quiet || git add results/new_cves.jsonl
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add database/*.jsonl
           git diff --staged --quiet || git commit -m "Add D3FEND mappings for new CVEs"
           git push
         env:
