@@ -11,10 +11,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -30,9 +32,15 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add resources/capec_db.json
-          git diff --staged --quiet || git commit -m "Update CAPEC DB"
-          git push
+          git add resources/capec_db.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Update CAPEC DB"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 3))
+          done
+          exit 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
@@ -42,10 +50,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -54,9 +64,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Pull latest changes
-        run: git pull
-
       - name: Update CWE DB
         run: python update_cwe_db.py
 
@@ -64,9 +71,15 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add resources/cwe_db.json
-          git diff --staged --quiet || git commit -m "Update CWE DB"
-          git push
+          git add resources/cwe_db.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Update CWE DB"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 3))
+          done
+          exit 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -76,10 +89,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-        
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -88,9 +103,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Pull latest changes
-        run: git pull
-
       - name: Update TECHNIQUES DB
         run: python update_technique_db.py
 
@@ -98,9 +110,15 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add resources/techniques_db.json
-          git diff --staged --quiet || git commit -m "Update CWE DB"
-          git push
+          git add resources/techniques_db.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Update TECHNIQUES DB"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 3))
+          done
+          exit 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -110,10 +128,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -122,9 +142,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Pull latest changes
-        run: git pull
-
       - name: Update D3FEND DB
         run: python update_defend_db.py
 
@@ -132,8 +149,14 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git add resources/defend_db.jsonl
-          git diff --staged --quiet || git commit -m "Update D3FEND DB"
-          git push
+          git add resources/defend_db.jsonl
+          git diff --staged --quiet && exit 0
+          git commit -m "Update D3FEND DB"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 3))
+          done
+          exit 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
