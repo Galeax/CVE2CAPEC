@@ -47,7 +47,7 @@ async function create_mitre_layer() {
     var layer = {
         "name": "CVE2CAPEC - New CVEs layer",
         "versions": {
-            "attack": "18",
+            "attack": "19",
             "navigator": "5.1.0",
             "layer": "4.5"
         },
