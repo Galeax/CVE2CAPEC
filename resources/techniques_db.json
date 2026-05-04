@@ -1,55 +1,48 @@
 {
     "T1548": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.002": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.004": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.001": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.003": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.006": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1548.005": [
-        "Defense Evasion",
         "Privilege Escalation"
     ],
     "T1134": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1134.002": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1134.003": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1134.004": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1134.005": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1134.001": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1531": [
         "Impact"
@@ -209,8 +202,9 @@
         "Exfiltration"
     ],
     "T1197": [
-        "Defense Evasion",
-        "Persistence"
+        "Execution",
+        "Persistence",
+        "Stealth"
     ],
     "T1547": [
         "Persistence",
@@ -318,7 +312,7 @@
         "Credential Access"
     ],
     "T1612": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1115": [
         "Collection"
@@ -592,8 +586,8 @@
         "Collection"
     ],
     "T1622": [
-        "Defense Evasion",
-        "Discovery"
+        "Discovery",
+        "Stealth"
     ],
     "T1491": [
         "Impact"
@@ -605,13 +599,12 @@
         "Impact"
     ],
     "T1678": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1140": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1610": [
-        "Defense Evasion",
         "Execution"
     ],
     "T1587": [
@@ -633,7 +626,40 @@
         "Discovery"
     ],
     "T1006": [
-        "Defense Evasion"
+        "Stealth"
+    ],
+    "T1686": [
+        "Defense Impairment"
+    ],
+    "T1686.001": [
+        "Defense Impairment"
+    ],
+    "T1686.002": [
+        "Defense Impairment"
+    ],
+    "T1686.003": [
+        "Defense Impairment"
+    ],
+    "T1685": [
+        "Defense Impairment"
+    ],
+    "T1685.006": [
+        "Defense Impairment"
+    ],
+    "T1685.005": [
+        "Defense Impairment"
+    ],
+    "T1685.002": [
+        "Defense Impairment"
+    ],
+    "T1685.004": [
+        "Defense Impairment"
+    ],
+    "T1685.001": [
+        "Defense Impairment"
+    ],
+    "T1685.003": [
+        "Defense Impairment"
     ],
     "T1561": [
         "Impact"
@@ -648,16 +674,19 @@
         "Discovery"
     ],
     "T1484": [
-        "Defense Evasion",
+        "Defense Impairment",
         "Privilege Escalation"
     ],
     "T1484.001": [
-        "Defense Evasion",
+        "Defense Impairment",
         "Privilege Escalation"
     ],
     "T1484.002": [
-        "Defense Evasion",
+        "Defense Impairment",
         "Privilege Escalation"
+    ],
+    "T1689": [
+        "Defense Impairment"
     ],
     "T1189": [
         "Initial Access"
@@ -691,9 +720,6 @@
     ],
     "T1114.002": [
         "Collection"
-    ],
-    "T1672": [
-        "Defense Evasion"
     ],
     "T1573": [
         "Command and Control"
@@ -814,13 +840,13 @@
         "Persistence"
     ],
     "T1480": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1480.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1480.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1048": [
         "Exfiltration"
@@ -873,11 +899,14 @@
     "T1212": [
         "Credential Access"
     ],
-    "T1211": [
-        "Defense Evasion"
+    "T1687": [
+        "Defense Impairment"
     ],
     "T1068": [
         "Privilege Escalation"
+    ],
+    "T1211": [
+        "Stealth"
     ],
     "T1210": [
         "Lateral Movement"
@@ -893,13 +922,13 @@
         "Discovery"
     ],
     "T1222": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1222.002": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1222.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1657": [
         "Impact"
@@ -982,6 +1011,15 @@
     "T1591.004": [
         "Reconnaissance"
     ],
+    "T1683": [
+        "Resource Development"
+    ],
+    "T1683.002": [
+        "Resource Development"
+    ],
+    "T1683.001": [
+        "Resource Development"
+    ],
     "T1615": [
         "Discovery"
     ],
@@ -989,198 +1027,137 @@
         "Initial Access"
     ],
     "T1564": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.013": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.008": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.014": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.012": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.005": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.003": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.011": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.004": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.010": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.009": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.006": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1564.007": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1665": [
         "Command and Control"
     ],
     "T1574": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.014": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.012": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.001": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.004": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.006": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.005": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.013": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.007": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.008": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.009": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.010": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
+        "Execution",
+        "Stealth"
     ],
     "T1574.011": [
-        "Defense Evasion",
-        "Persistence",
-        "Privilege Escalation"
-    ],
-    "T1562": [
-        "Defense Evasion"
-    ],
-    "T1562.002": [
-        "Defense Evasion"
-    ],
-    "T1562.007": [
-        "Defense Evasion"
-    ],
-    "T1562.008": [
-        "Defense Evasion"
-    ],
-    "T1562.012": [
-        "Defense Evasion"
-    ],
-    "T1562.013": [
-        "Defense Evasion"
-    ],
-    "T1562.004": [
-        "Defense Evasion"
-    ],
-    "T1562.001": [
-        "Defense Evasion"
-    ],
-    "T1562.010": [
-        "Defense Evasion"
-    ],
-    "T1562.003": [
-        "Defense Evasion"
-    ],
-    "T1562.006": [
-        "Defense Evasion"
-    ],
-    "T1562.009": [
-        "Defense Evasion"
-    ],
-    "T1562.011": [
-        "Defense Evasion"
-    ],
-    "T1656": [
-        "Defense Evasion"
+        "Execution",
+        "Stealth"
     ],
     "T1525": [
         "Persistence"
     ],
     "T1070": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.003": [
-        "Defense Evasion"
-    ],
-    "T1070.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.008": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.007": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.009": [
-        "Defense Evasion"
-    ],
-    "T1070.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.004": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.005": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.010": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1070.006": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1202": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1105": [
         "Command and Control"
@@ -1236,127 +1213,127 @@
         "Discovery"
     ],
     "T1036": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.009": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.012": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.007": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.010": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.008": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.004": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.005": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.011": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.003": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1036.006": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1556": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.009": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.001": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.007": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.006": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.004": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.008": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.002": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.003": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1556.005": [
         "Credential Access",
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1578": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1578.002": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1578.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1578.003": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1578.005": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1578.004": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1666": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1112": [
-        "Defense Evasion",
+        "Defense Impairment",
         "Persistence"
     ],
     "T1601": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1601.002": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1601.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1111": [
         "Credential Access"
@@ -1371,10 +1348,10 @@
         "Execution"
     ],
     "T1599": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1599.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1498": [
         "Impact"
@@ -1429,58 +1406,61 @@
         "Credential Access"
     ],
     "T1027": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.010": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.004": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.015": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.007": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.009": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.013": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.011": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.006": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.005": [
-        "Defense Evasion"
+        "Stealth"
+    ],
+    "T1027.018": [
+        "Stealth"
     ],
     "T1027.016": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.012": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.014": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.017": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.003": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1027.008": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1588": [
         "Resource Development"
@@ -1576,7 +1556,7 @@
         "Initial Access"
     ],
     "T1647": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1677": [
         "Execution"
@@ -1585,83 +1565,86 @@
         "Persistence"
     ],
     "T1542": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1542.003": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1542.002": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1542.004": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1542.001": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1542.005": [
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
+    ],
+    "T1690": [
+        "Defense Impairment"
     ],
     "T1057": [
         "Discovery"
     ],
     "T1055": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.004": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.001": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.011": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.015": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.002": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.009": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.013": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.012": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.008": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.003": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.005": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1055.014": [
-        "Defense Evasion",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1572": [
         "Command and Control"
@@ -1681,11 +1664,14 @@
     "T1090.003": [
         "Command and Control"
     ],
+    "T1682": [
+        "Reconnaissance"
+    ],
     "T1012": [
         "Discovery"
     ],
     "T1620": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1219": [
         "Command and Control"
@@ -1758,10 +1744,13 @@
         "Impact"
     ],
     "T1207": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1014": [
-        "Defense Evasion"
+        "Stealth"
+    ],
+    "T1688": [
+        "Defense Impairment"
     ],
     "T1053": [
         "Execution",
@@ -1845,7 +1834,7 @@
         "Reconnaissance"
     ],
     "T1679": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1505": [
         "Persistence"
@@ -1876,6 +1865,15 @@
     ],
     "T1129": [
         "Execution"
+    ],
+    "T1684": [
+        "Stealth"
+    ],
+    "T1684.002": [
+        "Stealth"
+    ],
+    "T1684.001": [
+        "Stealth"
     ],
     "T1072": [
         "Execution",
@@ -1948,25 +1946,25 @@
         "Credential Access"
     ],
     "T1553": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.002": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.006": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.004": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.005": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1553.003": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1195": [
         "Initial Access"
@@ -1981,49 +1979,49 @@
         "Initial Access"
     ],
     "T1218": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.003": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.015": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.004": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.014": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.013": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.005": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.007": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.008": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.009": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.010": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.011": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1218.012": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1082": [
         "Discovery"
@@ -2050,13 +2048,13 @@
         "Discovery"
     ],
     "T1216": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1216.001": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1216.002": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1007": [
         "Discovery"
@@ -2083,37 +2081,41 @@
         "Lateral Movement"
     ],
     "T1221": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1205": [
         "Command and Control",
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1205.001": [
         "Command and Control",
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1205.002": [
         "Command and Control",
-        "Defense Evasion",
-        "Persistence"
+        "Persistence",
+        "Stealth"
     ],
     "T1537": [
         "Exfiltration"
     ],
     "T1127": [
-        "Defense Evasion"
+        "Execution",
+        "Stealth"
     ],
     "T1127.002": [
-        "Defense Evasion"
+        "Execution",
+        "Stealth"
     ],
     "T1127.003": [
-        "Defense Evasion"
+        "Execution",
+        "Stealth"
     ],
     "T1127.001": [
-        "Defense Evasion"
+        "Execution",
+        "Stealth"
     ],
     "T1199": [
         "Initial Access"
@@ -2146,26 +2148,21 @@
         "Credential Access"
     ],
     "T1535": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1550": [
-        "Defense Evasion",
         "Lateral Movement"
     ],
     "T1550.001": [
-        "Defense Evasion",
         "Lateral Movement"
     ],
     "T1550.002": [
-        "Defense Evasion",
         "Lateral Movement"
     ],
     "T1550.003": [
-        "Defense Evasion",
         "Lateral Movement"
     ],
     "T1550.004": [
-        "Defense Evasion",
         "Lateral Movement"
     ],
     "T1204": [
@@ -2187,34 +2184,34 @@
         "Execution"
     ],
     "T1078": [
-        "Defense Evasion",
         "Initial Access",
         "Persistence",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1078.004": [
-        "Defense Evasion",
         "Initial Access",
         "Persistence",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1078.001": [
-        "Defense Evasion",
         "Initial Access",
         "Persistence",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1078.002": [
-        "Defense Evasion",
         "Initial Access",
         "Persistence",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1078.003": [
-        "Defense Evasion",
         "Initial Access",
         "Persistence",
-        "Privilege Escalation"
+        "Privilege Escalation",
+        "Stealth"
     ],
     "T1125": [
         "Collection"
@@ -2223,29 +2220,29 @@
         "Discovery"
     ],
     "T1497": [
-        "Defense Evasion",
-        "Discovery"
+        "Discovery",
+        "Stealth"
     ],
     "T1497.001": [
-        "Defense Evasion",
-        "Discovery"
+        "Discovery",
+        "Stealth"
     ],
     "T1497.003": [
-        "Defense Evasion",
-        "Discovery"
+        "Discovery",
+        "Stealth"
     ],
     "T1497.002": [
-        "Defense Evasion",
-        "Discovery"
+        "Discovery",
+        "Stealth"
     ],
     "T1600": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1600.002": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1600.001": [
-        "Defense Evasion"
+        "Defense Impairment"
     ],
     "T1102": [
         "Command and Control"
@@ -2266,7 +2263,7 @@
         "Execution"
     ],
     "T1220": [
-        "Defense Evasion"
+        "Stealth"
     ],
     "T1453": [
         "Collection",
@@ -2675,14 +2672,14 @@
     "T0895": [
         "Execution"
     ],
-    "T0803": [
+    "T1695": [
         "Inhibit Response Function"
     ],
-    "T0804": [
+    "T1691": [
         "Inhibit Response Function"
     ],
-    "T0805": [
-        "Inhibit Response Function"
+    "T0846.002": [
+        "Discovery"
     ],
     "T0806": [
         "Impair Process Control"
@@ -2693,6 +2690,13 @@
     "T0858": [
         "Evasion",
         "Execution"
+    ],
+    "T1692.001": [
+        "Evasion",
+        "Impair Process Control"
+    ],
+    "T1691.001": [
+        "Inhibit Response Function"
     ],
     "T0807": [
         "Execution"
@@ -2715,8 +2719,9 @@
     "T0893": [
         "Collection"
     ],
-    "T0812": [
-        "Lateral Movement"
+    "T1694.001": [
+        "Lateral Movement",
+        "Persistence"
     ],
     "T0813": [
         "Impact"
@@ -2733,8 +2738,14 @@
     "T0816": [
         "Inhibit Response Function"
     ],
+    "T0843.001": [
+        "Lateral Movement"
+    ],
     "T0817": [
         "Initial Access"
+    ],
+    "T1695.002": [
+        "Inhibit Response Function"
     ],
     "T0871": [
         "Execution"
@@ -2758,7 +2769,7 @@
     "T0823": [
         "Execution"
     ],
-    "T0891": [
+    "T1694.002": [
         "Lateral Movement",
         "Persistence"
     ],
@@ -2771,6 +2782,10 @@
     ],
     "T0872": [
         "Evasion"
+    ],
+    "T1694": [
+        "Lateral Movement",
+        "Persistence"
     ],
     "T0883": [
         "Initial Access"
@@ -2814,18 +2829,27 @@
     "T0821": [
         "Execution"
     ],
+    "T1693": [
+        "Impair Process Control",
+        "Inhibit Response Function",
+        "Persistence"
+    ],
     "T0836": [
         "Impair Process Control"
     ],
     "T0889": [
         "Persistence"
     ],
-    "T0839": [
+    "T1693.002": [
         "Impair Process Control",
+        "Inhibit Response Function",
         "Persistence"
     ],
     "T0801": [
         "Collection"
+    ],
+    "T0846.003": [
+        "Discovery"
     ],
     "T0834": [
         "Execution"
@@ -2836,8 +2860,17 @@
     "T0842": [
         "Discovery"
     ],
+    "T0843.002": [
+        "Lateral Movement"
+    ],
     "T0861": [
         "Collection"
+    ],
+    "T0846.001": [
+        "Discovery"
+    ],
+    "T0843.003": [
+        "Lateral Movement"
     ],
     "T0843": [
         "Lateral Movement"
@@ -2861,6 +2894,13 @@
     "T0847": [
         "Initial Access"
     ],
+    "T1691.002": [
+        "Inhibit Response Function"
+    ],
+    "T1692.002": [
+        "Evasion",
+        "Impair Process Control"
+    ],
     "T0848": [
         "Initial Access"
     ],
@@ -2874,15 +2914,17 @@
     "T0853": [
         "Execution"
     ],
+    "T1695.001": [
+        "Inhibit Response Function"
+    ],
     "T0881": [
         "Inhibit Response Function"
     ],
+    "T0873.001": [
+        "Persistence"
+    ],
     "T0865": [
         "Initial Access"
-    ],
-    "T0856": [
-        "Evasion",
-        "Impair Process Control"
     ],
     "T0869": [
         "Command and Control"
@@ -2893,7 +2935,8 @@
     "T0894": [
         "Evasion"
     ],
-    "T0857": [
+    "T1693.001": [
+        "Impair Process Control",
         "Inhibit Response Function",
         "Persistence"
     ],
@@ -2903,7 +2946,8 @@
     "T0864": [
         "Initial Access"
     ],
-    "T0855": [
+    "T1692": [
+        "Evasion",
         "Impair Process Control"
     ],
     "T0863": [
@@ -2912,6 +2956,9 @@
     "T0859": [
         "Lateral Movement",
         "Persistence"
+    ],
+    "T1695.003": [
+        "Inhibit Response Function"
     ],
     "T0860": [
         "Initial Access"
