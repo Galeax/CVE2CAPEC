@@ -83,7 +83,7 @@ async function create_mitre_layer() {
         "showTacticRowBackground": false,
         "tacticRowBackground": "#dddddd",
         "selectTechniquesAcrossTactics": true,
-        "selectSubtechniquesWithParent": false,
+        "selectSubtechniquesWithParent": true,
         "selectVisibleTechniques": false,
     };
 
