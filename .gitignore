@@ -1,3 +1,8 @@
 .vscode
 venv
 results/new_cves.jsonl
+__pycache__/
+*.pyc
+# dev-only symlinks for local testing (so iframe paths /CVE2CAPEC/atlas, /CVE2CAPEC/mitre resolve)
+/atlas
+/mitre

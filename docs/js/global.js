@@ -18,6 +18,7 @@ var chart_nodes = [];
 var chart_links = [];
 var selected_techniques = [];
 var selected_defend_techniques = [];
+var selected_atlas_techniques = [];
 var original_chart_nodes = [];
 var original_chart_links = [];
 var selected_path = null;
@@ -38,11 +39,21 @@ document.querySelector("#layer_type").addEventListener('change', function () {
 document.addEventListener('DOMContentLoaded', function () {
     // Masquer l'onglet D3FEND par défaut
     document.getElementById('defend-tab').style.display = 'none';
+    // Masquer l'onglet ATLAS par défaut
+    document.getElementById('atlas-tab').style.display = 'none';
 
     // Gestionnaire d'événements pour les onglets
     document.getElementById('attack-tab').addEventListener('shown.bs.tab', function (e) {
         // Redimensionner l'iframe si elle existe
         const iframe = document.getElementById('mitre');
+        if (iframe) {
+            iframe.style.height = '800px';
+            iframe.style.width = '100%';
+        }
+    });
+
+    document.getElementById('atlas-tab').addEventListener('shown.bs.tab', function (e) {
+        const iframe = document.getElementById('atlas');
         if (iframe) {
             iframe.style.height = '800px';
             iframe.style.width = '100%';
@@ -380,7 +391,8 @@ async function process(page_load = false) {
     chart.showLoading();
     const defendScore = {};
     const modeSelect = document.getElementById('layer_type').value;
-    const wantDefend = (modeSelect === 'enterprise-defend');   // true / false
+    const wantDefend = (modeSelect === 'enterprise-defend');
+    const wantAtlas = (modeSelect === 'enterprise-defend');
     const attackDomain = (modeSelect === 'enterprise-defend')
         ? 'enterprise'
         : modeSelect;
@@ -391,11 +403,17 @@ async function process(page_load = false) {
         fetch('https://raw.githubusercontent.com/Galeax/CVE2CAPEC/refs/heads/main/resources/capec_db.json').then(r => r.json())
     ];
     if (wantDefend) fetches.push(fetch('https://raw.githubusercontent.com/Galeax/CVE2CAPEC/refs/heads/main/resources/defend_db.jsonl').then(r => r.text()));
+    if (wantAtlas) fetches.push(fetch('https://raw.githubusercontent.com/Galeax/CVE2CAPEC/refs/heads/main/resources/atlas_db.json').then(r => r.json()));
 
-    let techniquesAssoc, cweDataRaw, capecDataRaw, defendText = '';
+    let techniquesAssoc, cweDataRaw, capecDataRaw, defendText = '', atlasList = {};
     try {
         const results = await Promise.all(fetches);
-        [techniquesAssoc, cweDataRaw, capecDataRaw, defendText = ''] = results;
+        techniquesAssoc = results[0];
+        cweDataRaw = results[1];
+        capecDataRaw = results[2];
+        let i = 3;
+        if (wantDefend) defendText = results[i++];
+        if (wantAtlas) atlasList = results[i++];
     } catch (error) {
         console.error(error);
         Swal.fire({
@@ -411,6 +429,8 @@ async function process(page_load = false) {
     defendText.split('\n').forEach(line => {
         if (line.trim()) Object.assign(defendList, JSON.parse(line));
     });
+
+    const atlasScore = {};
 
     data_cleaned = new Set();
     var cves_not_found = [];
@@ -485,6 +505,12 @@ async function process(page_load = false) {
                             data.push({ source: atkKey, target: 'D3F-' + d.id, value: 1 });
                         });
                     });
+                    relatedTechniques.forEach(technique => {
+                        const atkKey = 'T' + technique;
+                        (atlasList[atkKey] || []).forEach(a => {
+                            data.push({ source: atkKey, target: a.id, value: 1 });
+                        });
+                    });
                 });
             })
         })
@@ -494,6 +520,9 @@ async function process(page_load = false) {
         if (l.target.startsWith('D3F-')) {
             const id = l.target.slice(4);
             defendScore[id] = (defendScore[id] || 0) + 1;
+        }
+        if (typeof l.target === 'string' && l.target.startsWith('AML.')) {
+            atlasScore[l.target] = (atlasScore[l.target] || 0) + 1;
         }
     });
 
@@ -688,6 +717,18 @@ async function process(page_load = false) {
         document.getElementById('defend_matrix').style.display = 'none';
         document.getElementById('defend-tab').style.display = 'none';
     }
+
+    if (wantAtlas) {
+        document.getElementById('atlas-tab').style.display = '';
+        await create_atlas_layer();
+        await print_atlas();
+        updateAtlasStats();
+    } else {
+        document.getElementById('atlas-tab').style.display = 'none';
+        document.getElementById('atlas-summary').style.display = 'none';
+        const frame = document.getElementById('atlas-frame');
+        if (frame) frame.hidden = true;
+    }
 }
 
 // ===== UTILITY FUNCTIONS =====
@@ -714,6 +755,173 @@ async function mitre_selection(techniques, selection = false, technique_id = nul
 async function defend_selection(techniques) {
     selected_defend_techniques = techniques;
     show_defend_selected();
+}
+
+// Function called from the ATLAS Navigator iframe on technique selection
+async function atlas_selection(techniques, selection = false, technique_id = null) {
+    var selected = new Set();
+    (techniques || []).forEach(function (element) {
+        var t = (element || '').toString().split('^')[0];
+        if (t) selected.add(t);
+    });
+    selected_atlas_techniques = Array.from(selected);
+    show_atlas_selected(selection, technique_id);
+}
+
+async function show_atlas_selected(selection, technique_id) {
+    var data_link = new Set();
+    var nodes = new Set();
+
+    // Expand parent ATLAS techniques to include sub-techniques (AML.T0091 → AML.T0091.000, ...)
+    var expanded_atlas = new Set();
+    selected_atlas_techniques.forEach(t => {
+        expanded_atlas.add(t);
+        if (typeof t === 'string' && t.startsWith('AML.') && t.split('.').length === 2) {
+            chart_links.forEach(link => {
+                if (typeof link.target === 'string' && link.target.startsWith(t + '.')) {
+                    expanded_atlas.add(link.target);
+                }
+            });
+        }
+    });
+
+    expanded_atlas.forEach(amlTech => {
+        const attackTechs = new Set();
+        const capecs = new Set();
+        const cwes = new Set();
+
+        chart_links.forEach(link => {
+            if (link.target === amlTech) {
+                data_link.add(link);
+                if (typeof link.source === 'string' && link.source.startsWith('T')) {
+                    attackTechs.add(link.source);
+                }
+            }
+        });
+
+        attackTechs.forEach(att => {
+            chart_links.forEach(link => {
+                if (link.target === att) {
+                    data_link.add(link);
+                    if (typeof link.source === 'string' && link.source.startsWith('CAPEC-')) {
+                        capecs.add(link.source);
+                    }
+                }
+            });
+        });
+
+        capecs.forEach(capec => {
+            chart_links.forEach(link => {
+                if (link.target === capec) {
+                    data_link.add(link);
+                    if (typeof link.source === 'string' && link.source.startsWith('CWE-')) {
+                        cwes.add(link.source);
+                    }
+                }
+            });
+        });
+
+        cwes.forEach(cwe => {
+            chart_links.forEach(link => {
+                if (link.target === cwe) {
+                    data_link.add(link);
+                }
+            });
+        });
+    });
+
+    data_link.forEach(link => {
+        nodes.add(link.source);
+        nodes.add(link.target);
+    });
+
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove',
+            textStyle: { fontSize: 12 },
+            formatter: function (params) {
+                if (params.dataType === 'node') {
+                    let nodeName = params.data.name;
+                    let nodeValue = params.value || 'N/A';
+                    let incomingNodes = Array.from(data_link)
+                        .filter(link => link.target === nodeName)
+                        .map(link => link.source)
+                        .join('<br/>- ');
+                    let outgoingNodes = Array.from(data_link)
+                        .filter(link => link.source === nodeName)
+                        .map(link => link.target)
+                        .join('<br/>- ');
+                    var ret = `<b>${nodeName} (${nodeValue})</b><hr class="hr-tooltip" />`;
+                    if (incomingNodes) ret += `<u>From:</u><br>- ${incomingNodes}<br>`;
+                    if (outgoingNodes) ret += `<u>To:</u><br>- ${outgoingNodes}`;
+                    return ret;
+                }
+                return `${params.data.source} → ${params.data.target}: ${params.data.value}`;
+            }
+        },
+        annimation: false,
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: { show: true, title: 'Save as image', type: 'png', backgroundColor: '#fff' },
+                restore: { show: true, title: 'Restore' },
+                myFullScreen: {
+                    show: true,
+                    title: 'Plein Écran',
+                    icon: fullScreenIcon,
+                    onclick: function () {
+                        if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                        } else {
+                            document.getElementById('subgraph').requestFullscreen();
+                        }
+                    }
+                }
+            }
+        },
+        series: {
+            type: 'sankey',
+            emphasis: { focus: 'trajectory' },
+            nodeAlign: 'center',
+            nodeWidth: 20,
+            nodeGap: 5,
+            layoutIterations: 64,
+            label: { fontSize: 12 },
+            data: [],
+            links: [],
+            lineStyle: { color: 'source', curveness: 0.5 }
+        }
+    };
+
+    if (nodes.size === 0 || data_link.size === 0) {
+        if (selection && technique_id) {
+            new Notify({
+                status: 'error',
+                title: 'Error!',
+                text: 'No ATLAS technique selected !',
+                effect: 'fade',
+                speed: 300,
+                customClass: null,
+                customIcon: null,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 3000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right top'
+            });
+        }
+        option.series.data = [];
+        option.series.links = [];
+        modal_chart.setOption(option);
+    } else {
+        option.series.data = Array.from(nodes).map(node => ({ name: node }));
+        option.series.links = Array.from(data_link);
+        modal_chart.setOption(option);
+    }
 }
 
 async function show_defend_selected() {
@@ -963,8 +1171,21 @@ async function show_selected(selection, technique_id) {
         modal_chart.setOption(option);
     }
 
-    // Get CAPEC and CWE data from Technoques
+    // Expand parent techniques to include their sub-techniques (T1078 → T1078.001, T1078.002, ...)
+    var expanded_techniques = new Set();
     selected_techniques.forEach(technique => {
+        expanded_techniques.add(technique);
+        if (typeof technique === 'string' && !technique.includes('.')) {
+            chart_links.forEach(element => {
+                if (typeof element.target === 'string' && element.target.startsWith(technique + '.')) {
+                    expanded_techniques.add(element.target);
+                }
+            });
+        }
+    });
+
+    // Get CAPEC and CWE data from Technoques
+    expanded_techniques.forEach(technique => {
         const capecs = new Set();
         const cwes = new Set();
 

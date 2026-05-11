@@ -1,0 +1,78 @@
+{
+    "collection_index_url": "",
+
+    "versions": {
+        "enabled": true,
+        "entries": [
+            {
+                "name": "ATLAS v4",
+                "version": "4",
+                "domains": [
+                    {
+                        "name": "ATLAS",
+                        "identifier": "atlas",
+                        "data": ["CVE2CAPEC/atlas/assets/stix-atlas.json"]
+                    }
+                ]
+            }
+        ]
+    },
+
+    "custom_context_menu_items": [],
+
+    "default_layers": {
+        "enabled": true,
+        "urls": ["CVE2CAPEC/atlas/assets/example.json"]
+    },
+
+    "comment_color": "yellow",
+    "link_color": "blue",
+    "metadata_color": "purple",
+
+    "banner": "",
+
+    "customize_features": [
+        {"name": "multiselect", "enabled": true, "description": "."},
+        {"name": "export_render", "enabled": true, "description": "."},
+        {"name": "export_excel", "enabled": true, "description": "."},
+        {"name": "legend", "enabled": true, "description": "."},
+        {"name": "background_color", "enabled": true, "description": "."},
+        {"name": "non_aggregate_score_color", "enabled": true, "description": "."},
+        {"name": "aggregate_score_color", "enabled": true, "description": "."},
+        {"name": "comment_underline", "enabled": true, "description": "."},
+        {"name": "metadata_underline", "enabled": true, "description": "."},
+        {"name": "link_underline", "enabled": true, "description": "."}
+    ],
+
+    "features": [
+        {"name": "leave_site_dialog", "enabled": false, "description": "."},
+        {"name": "tabs", "enabled": true, "description": "."},
+        {"name": "header", "enabled": true, "description": "."},
+        {"name": "selection_controls", "enabled": true, "description": ".", "subfeatures": [
+            {"name": "search", "enabled": true, "description": "."},
+            {"name": "deselect_all", "enabled": true, "description": "."},
+            {"name": "selecting_techniques", "enabled": true, "description": "."}
+        ]},
+        {"name": "layer_controls", "enabled": true, "description": ".", "subfeatures": [
+            {"name": "layer_settings", "enabled": true, "description": "."},
+            {"name": "download_layer", "enabled": true, "description": "."},
+            {"name": "filters", "enabled": true, "description": "."},
+            {"name": "sorting", "enabled": true, "description": "."},
+            {"name": "color_setup", "enabled": true, "description": "."},
+            {"name": "toggle_hide_disabled", "enabled": true, "description": "."},
+            {"name": "subtechniques", "enabled": true, "description": "."}
+        ]},
+        {"name": "technique_controls", "enabled": true, "description": ".", "subfeatures": [
+            {"name": "disable_techniques", "enabled": true, "description": "."},
+            {"name": "manual_color", "enabled": true, "description": "."},
+            {"name": "scoring", "enabled": true, "description": "."},
+            {"name": "comments", "enabled": true, "description": "."},
+            {"name": "links", "enabled": true, "description": "."},
+            {"name": "metadata", "enabled": true, "description": "."},
+            {"name": "clear_annotations", "enabled": true, "description": "."}
+        ]},
+        {"name": "toolbar_controls", "enabled": true, "description": ".", "subfeatures": [
+            {"name": "sticky_toolbar", "enabled": true, "description": "."}
+        ]}
+    ]
+}

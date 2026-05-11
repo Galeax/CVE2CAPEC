@@ -1,0 +1,328 @@
+{
+  "T1003": [
+    {
+      "id": "AML.T0090",
+      "name": "OS Credential Dumping",
+      "tactics": [
+        "AML.TA0013"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0090"
+    }
+  ],
+  "T1005": [
+    {
+      "id": "AML.T0037",
+      "name": "Data from Local System",
+      "tactics": [
+        "AML.TA0009"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0037"
+    }
+  ],
+  "T1036": [
+    {
+      "id": "AML.T0074",
+      "name": "Masquerading",
+      "tactics": [
+        "AML.TA0007"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0074"
+    }
+  ],
+  "T1057": [
+    {
+      "id": "AML.T0089",
+      "name": "Process Discovery",
+      "tactics": [
+        "AML.TA0008"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0089"
+    }
+  ],
+  "T1059": [
+    {
+      "id": "AML.T0050",
+      "name": "Command and Scripting Interpreter",
+      "tactics": [
+        "AML.TA0005"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0050"
+    }
+  ],
+  "T1078": [
+    {
+      "id": "AML.T0012",
+      "name": "Valid Accounts",
+      "tactics": [
+        "AML.TA0004",
+        "AML.TA0012"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0012"
+    }
+  ],
+  "T1189": [
+    {
+      "id": "AML.T0078",
+      "name": "Drive-by Compromise",
+      "tactics": [
+        "AML.TA0004"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0078"
+    }
+  ],
+  "T1190": [
+    {
+      "id": "AML.T0049",
+      "name": "Exploit Public-Facing Application",
+      "tactics": [
+        "AML.TA0004"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0049"
+    }
+  ],
+  "T1204": [
+    {
+      "id": "AML.T0011",
+      "name": "User Execution",
+      "tactics": [
+        "AML.TA0005"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0011"
+    },
+    {
+      "id": "AML.T0011.003",
+      "name": "Malicious Link",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0011.003"
+    }
+  ],
+  "T1211": [
+    {
+      "id": "AML.T0106",
+      "name": "Exploitation for Credential Access",
+      "tactics": [
+        "AML.TA0013"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0106"
+    },
+    {
+      "id": "AML.T0107",
+      "name": "Exploitation for Defense Evasion",
+      "tactics": [
+        "AML.TA0007"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0107"
+    }
+  ],
+  "T1213": [
+    {
+      "id": "AML.T0036",
+      "name": "Data from Information Repositories",
+      "tactics": [
+        "AML.TA0009"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0036"
+    }
+  ],
+  "T1497": [
+    {
+      "id": "AML.T0097",
+      "name": "Virtualization/Sandbox Evasion",
+      "tactics": [
+        "AML.TA0007"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0097"
+    }
+  ],
+  "T1526": [
+    {
+      "id": "AML.T0075",
+      "name": "Cloud Service Discovery",
+      "tactics": [
+        "AML.TA0008"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0075"
+    }
+  ],
+  "T1550": [
+    {
+      "id": "AML.T0091",
+      "name": "Use Alternate Authentication Material",
+      "tactics": [
+        "AML.TA0015"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0091"
+    }
+  ],
+  "T1550.001": [
+    {
+      "id": "AML.T0091.000",
+      "name": "Application Access Token",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0091.000"
+    }
+  ],
+  "T1552": [
+    {
+      "id": "AML.T0055",
+      "name": "Unsecured Credentials",
+      "tactics": [
+        "AML.TA0013"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0055"
+    }
+  ],
+  "T1566": [
+    {
+      "id": "AML.T0052",
+      "name": "Phishing",
+      "tactics": [
+        "AML.TA0004",
+        "AML.TA0015"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0052"
+    }
+  ],
+  "T1583.001": [
+    {
+      "id": "AML.T0008.002",
+      "name": "Domains",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0008.002"
+    }
+  ],
+  "T1583.007": [
+    {
+      "id": "AML.T0008.004",
+      "name": "Serverless",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0008.004"
+    }
+  ],
+  "T1585": [
+    {
+      "id": "AML.T0021",
+      "name": "Establish Accounts",
+      "tactics": [
+        "AML.TA0003"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0021"
+    }
+  ],
+  "T1587": [
+    {
+      "id": "AML.T0017",
+      "name": "Develop Capabilities",
+      "tactics": [
+        "AML.TA0003"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0017"
+    }
+  ],
+  "T1588": [
+    {
+      "id": "AML.T0016",
+      "name": "Obtain Capabilities",
+      "tactics": [
+        "AML.TA0003"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0016"
+    }
+  ],
+  "T1588.002": [
+    {
+      "id": "AML.T0016.001",
+      "name": "Software Tools",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0016.001"
+    }
+  ],
+  "T1589": [
+    {
+      "id": "AML.T0087",
+      "name": "Gather Victim Identity Information",
+      "tactics": [
+        "AML.TA0002"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0087"
+    }
+  ],
+  "T1593": [
+    {
+      "id": "AML.T0095",
+      "name": "Search Open Websites/Domains",
+      "tactics": [
+        "AML.TA0002"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0095"
+    }
+  ],
+  "T1593.003": [
+    {
+      "id": "AML.T0095.000",
+      "name": "Code Repositories",
+      "tactics": [],
+      "url": "https://atlas.mitre.org/techniques/AML.T0095.000"
+    }
+  ],
+  "T1594": [
+    {
+      "id": "AML.T0003",
+      "name": "Search Victim-Owned Websites",
+      "tactics": [
+        "AML.TA0002"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0003"
+    }
+  ],
+  "T1595": [
+    {
+      "id": "AML.T0006",
+      "name": "Active Scanning",
+      "tactics": [
+        "AML.TA0002"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0006"
+    }
+  ],
+  "T1596": [
+    {
+      "id": "AML.T0000",
+      "name": "Search Open Technical Databases",
+      "tactics": [
+        "AML.TA0002"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0000"
+    }
+  ],
+  "T1608": [
+    {
+      "id": "AML.T0079",
+      "name": "Stage Capabilities",
+      "tactics": [
+        "AML.TA0003"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0079"
+    }
+  ],
+  "T1611": [
+    {
+      "id": "AML.T0105",
+      "name": "Escape to Host",
+      "tactics": [
+        "AML.TA0012"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0105"
+    }
+  ],
+  "T1656": [
+    {
+      "id": "AML.T0073",
+      "name": "Impersonation",
+      "tactics": [
+        "AML.TA0007"
+      ],
+      "url": "https://atlas.mitre.org/techniques/AML.T0073"
+    }
+  ]
+}
