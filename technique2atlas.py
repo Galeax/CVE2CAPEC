@@ -1,5 +1,6 @@
 import sys
 import json
+import gzip
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
@@ -24,7 +25,7 @@ def save_jsonl(cve_tech_data):
     for year, cves in new_cves.items():
         cve_db = load_db_jsonl(year)
         cve_db.update(cves)
-        with open(f'database/CVE-{year}.jsonl', 'w') as f:
+        with gzip.open(f'database/CVE-{year}.jsonl.gz', 'wt', encoding='utf-8') as f:
             for cve, data in cve_db.items():
                 f.write(json.dumps({cve: data}) + "\n")
 
@@ -32,7 +33,7 @@ def save_jsonl(cve_tech_data):
 def load_db_jsonl(cve_year):
     cve_db = {}
     try:
-        with open(f'database/CVE-{cve_year}.jsonl', 'r') as f:
+        with gzip.open(f'database/CVE-{cve_year}.jsonl.gz', 'rt', encoding='utf-8') as f:
             for line in f:
                 cve_entry = json.loads(line.strip())
                 cve_db.update(cve_entry)

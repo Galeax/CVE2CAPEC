@@ -1,9 +1,10 @@
 """
-One-shot backfill: add the ATLAS field to every record in database/CVE-YYYY.jsonl.
+One-shot backfill: add the ATLAS field to every record in database/CVE-YYYY.jsonl.gz.
 Re-uses the same lookup logic as technique2atlas.py.
 Run from the project root: python scripts/backfill_atlas.py
 """
 import glob
+import gzip
 import json
 import os
 import sys
@@ -21,10 +22,10 @@ def backfill():
     with open(ATLAS_FILE, "r") as f:
         atlas_list = json.load(f)
 
-    files = sorted(glob.glob("database/CVE-*.jsonl"))
+    files = sorted(glob.glob("database/CVE-*.jsonl.gz"))
     for path in files:
         cve_tech_data = {}
-        with open(path, "r") as f:
+        with gzip.open(path, "rt", encoding="utf-8") as f:
             for line in f:
                 cve_entry = json.loads(line.strip())
                 cve_tech_data.update(cve_entry)
@@ -39,7 +40,7 @@ def backfill():
             for future in as_completed(futures):
                 cve_tech_data[futures[future]]["ATLAS"] = future.result()
 
-        with open(path, "w") as f:
+        with gzip.open(path, "wt", encoding="utf-8") as f:
             for cve, data in cve_tech_data.items():
                 f.write(json.dumps({cve: data}) + "\n")
 
