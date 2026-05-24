@@ -26,6 +26,17 @@ var is_path_selected = false;
 
 // ===== UTILITY FUNCTIONS =====
 
+// Fetch a gzipped text resource and return the decompressed string.
+// Uses the browser-native DecompressionStream API.
+async function fetchGzippedText(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${url}: ${response.status}`);
+    }
+    const decompressed = response.body.pipeThrough(new DecompressionStream('gzip'));
+    return await new Response(decompressed).text();
+}
+
 // Avoid Copy/Paste formatting in contenteditable div
 document.querySelector('[contenteditable]').addEventListener('paste', function (event) {
     event.preventDefault();
@@ -447,8 +458,7 @@ async function process(page_load = false) {
     for (var [year, yearCves] of Object.entries(cves_list)) {
         var database;
         try {
-            var response = await fetch(`https://raw.githubusercontent.com/Galeax/CVE2CAPEC/refs/heads/main/database/CVE-${year}.jsonl`);
-            var responseText = await response.text();
+            var responseText = await fetchGzippedText(`https://raw.githubusercontent.com/Galeax/CVE2CAPEC/refs/heads/main/database/CVE-${year}.jsonl.gz`);
             database = {};
             responseText.split('\n').forEach(line => {
                 if (line.trim()) {

@@ -158,7 +158,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add database/*.jsonl
+          git add database/*.jsonl.gz
           git diff --staged --quiet && exit 0
           git commit -m "Retrieve new CVEs and update CVE DB"
           for i in 1 2 3 4 5; do
@@ -210,7 +210,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add database/*.jsonl
+          git add database/*.jsonl.gz
           git diff --staged --quiet && exit 0
           git commit -m "Add D3FEND mappings for new CVEs"
           for i in 1 2 3 4 5; do
@@ -262,7 +262,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add database/*.jsonl
+          git add database/*.jsonl.gz
           git diff --staged --quiet && exit 0
           git commit -m "Add ATLAS mappings for new CVEs"
           for i in 1 2 3 4 5; do
