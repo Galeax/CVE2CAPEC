@@ -1,6 +1,5 @@
 import json
 import sys
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
 
@@ -18,18 +17,11 @@ def fetch_capec_for_cwe(cwe: str, cwe_db: dict):
         return []
 
 
-# Process each CWE to extract the related CAPEC entries
+# Process each CWE to extract the related CAPEC entries.
 def process_cwe_to_capec(cwe_list, cwe_db):
     list_capec = set()
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(fetch_capec_for_cwe, cwe, cwe_db): cwe for cwe in cwe_list}
-        for future in as_completed(futures):
-            cwe = futures[future]
-            try:
-                data = future.result()
-                list_capec.update(data)
-            except Exception as e:
-                print(f"Error processing CWE-{cwe}: {str(e)}")
+    for cwe in cwe_list:
+        list_capec.update(fetch_capec_for_cwe(cwe, cwe_db))
     return list(list_capec)
 
 
