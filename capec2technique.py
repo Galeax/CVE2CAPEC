@@ -30,7 +30,7 @@ def save_jsonl(cve_capec_data):
         # Update the database with the new CVEs
         cve_db = load_db_jsonl(year)
         cve_db.update(cves)
-        with gzip.open(f'database/CVE-{year}.jsonl.gz', 'wt', encoding='utf-8') as f:
+        with gzip.open(f'database/CVE-{year}.jsonl.gz', 'wt', encoding='utf-8', compresslevel=6) as f:
             for cve, data in cve_db.items():
                 f.write(json.dumps({cve: data}) + "\n")
 
