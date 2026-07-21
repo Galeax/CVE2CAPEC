@@ -70,16 +70,19 @@ def extract_cwes(cve: dict):
         return cwe_list
     for cwe in infos:
         if cwe.get("type", "") == "Primary":
-            cwe_code = cwe.get("description", [])[0].get("value", "")
-            if match(r"CWE-\d{1,4}", cwe_code):
-                cwe_list.append(cwe_code.split("-")[1])
-                has_primary_cwe = True
+            for desc in cwe.get("description", []):
+                m = match(r"CWE-(\d{1,4})$", desc.get("value", "").strip())
+                if m:
+                    has_primary_cwe = True
+                    if m.group(1) not in cwe_list:
+                        cwe_list.append(m.group(1))
     if not has_primary_cwe:
         for cwe in infos:
             if cwe.get("type", "") == "Secondary":
-                cwe_code = cwe.get("description", [])[0].get("value", "")
-                if match(r"CWE-\d{1,4}", cwe_code):
-                    cwe_list.append(cwe_code.split("-")[1])
+                for desc in cwe.get("description", []):
+                    m = match(r"CWE-(\d{1,4})$", desc.get("value", "").strip())
+                    if m and m.group(1) not in cwe_list:
+                        cwe_list.append(m.group(1))
     return cwe_list
 
 
