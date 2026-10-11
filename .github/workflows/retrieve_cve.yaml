@@ -258,11 +258,14 @@ jobs:
       - name: Retrieve ATLAS mappings from TECHNIQUES
         run: python technique2atlas.py
 
+      - name: Build the web CVE -> CWE index
+        run: python build_web_index.py
+
       - name: Commit and push database updates
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add database/*.jsonl.gz
+          git add database/*.jsonl.gz docs/data/cwe
           git diff --staged --quiet && exit 0
           git commit -m "Add ATLAS mappings for new CVEs"
           for i in 1 2 3 4 5; do

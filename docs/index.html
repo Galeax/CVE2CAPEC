@@ -1,245 +1,300 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+
+    <title>CVE2CAPEC · Map CVEs to MITRE ATT&amp;CK, D3FEND and ATLAS</title>
+    <meta name="description" content="Turn a list of CVEs into CWE, CAPEC, MITRE ATT&CK, MITRE D3FEND and MITRE ATLAS mappings, with interactive matrices.">
+    <meta property="og:url" content="https://galeax.github.io/CVE2CAPEC/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CVE2CAPEC · Map CVEs to MITRE ATT&CK, D3FEND and ATLAS">
+    <meta property="og:description" content="Turn a list of CVEs into CWE, CAPEC, MITRE ATT&CK, MITRE D3FEND and MITRE ATLAS mappings, with interactive matrices.">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/874674117/671a677f-61ba-4506-bae6-e6f1ca07a9bf">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CVE2CAPEC · Map CVEs to MITRE ATT&CK, D3FEND and ATLAS">
+    <meta name="twitter:description" content="Turn a list of CVEs into CWE, CAPEC, MITRE ATT&CK, MITRE D3FEND and MITRE ATLAS mappings, with interactive matrices.">
+    <meta name="twitter:image" content="https://repository-images.githubusercontent.com/874674117/671a677f-61ba-4506-bae6-e6f1ca07a9bf">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E%3Cpath d='M8 10h6M8 16h10M8 22h16' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+    <link rel="stylesheet" href="css/global.css">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCCFW6FDGQ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-NCCFW6FDGQ');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="css/global.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <title>Generate MITRE ATTACK and DEFEND from a CVE list - CVE2CAPEC</title>
-    <meta name="description" content="Convert a list of CVE to MITRE ATTACK and MITRE DEFEND matrixes.">
-    <meta property="og:url" content="https://repository-images.githubusercontent.com/874674117/671a677f-61ba-4506-bae6-e6f1ca07a9bf">
-    <meta property="og:type" content="website">
-    <meta property="og:type" content="Generate MITRE ATTACK and DEFEND from a CVE list - CVE2CAPEC">
-    <meta property="og:description" content="Convert a list of CVE to MITRE ATTACK and MITRE DEFEND matrixes.">
-    <meta property="og:image" content="https://repository-images.githubusercontent.com/874674117/671a677f-61ba-4506-bae6-e6f1ca07a9bf">
-    <meta property="twitter:card" content="">
-    <meta property="twitter:title" content="Generate MITRE ATTACK and DEFEND from a CVE list - CVE2CAPEC">
-    <meta property="twitter:description" content="Convert a list of CVE to MITRE ATTACK and MITRE DEFEND matrixes.">
-    <meta property="twitter:image" content="https://repository-images.githubusercontent.com/874674117/671a677f-61ba-4506-bae6-e6f1ca07a9bf">
+    <script defer src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+    <script defer src="js/global.js"></script>
+    <script defer src="js/mitre-attack.js"></script>
+    <script defer src="js/mitre-defend.js"></script>
+    <script defer src="js/mitre-atlas.js"></script>
 </head>
 
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></symbol>
+        <symbol id="i-expand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+        <symbol id="i-flow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h4c4 0 4 12 8 12h4M4 18h4c2 0 3-3 4-6M16 6h4"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="i-image" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4"/></symbol>
+    </svg>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <span class="navbar-brand">CVE2CAPEC</span>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item text-justify mt-2 mt-lg-0">
-                        <span class="navbar-text">
-                            Made with ❤️ in 🇫🇷 by <a href="https://galeax.com">Galeax</a>
-                        </span>
-                    </li>
-                    <li class="nav-item container-fluid mt-2 mt-lg-0" style="width: fit-content;">
-                        <span class="navbar-text">
-                            <a class="github-button" href="https://github.com/Galeax/CVE2CAPEC"
-                                data-color-scheme="no-preference: dark; light: light_high_contrast; dark: dark;"
-                                data-icon="octicon-star" data-size="large"
-                                aria-label="Star galeax/CVE2CAPEC on GitHub">Star</a>
-                        </span>
-                        <span class="navbar-text">
-                            <a class="github-button" href="https://github.com/Galeax/CVE2CAPEC"
-                                data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-                                aria-label="Watch Galeax/CVE2CAPEC on GitHub"></a>
-                        </span>
-                    </li>
-                </ul>
-            </div>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="./" aria-label="CVE2CAPEC home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M8 10h6M8 16h10M8 22h16" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+                </span>
+                CVE2CAPEC
+            </a>
+            <nav class="topbar-links">
+                <a class="link-muted hide-sm" href="https://galeax.com" target="_blank" rel="noopener">Made in 🇫🇷 by <strong>Galeax</strong></a>
+                <a class="btn btn-ghost btn-sm" href="https://github.com/Galeax/CVE2CAPEC" target="_blank" rel="noopener">
+                    <svg class="icon"><use href="#i-github"/></svg>
+                    <span class="hide-sm">GitHub</span>
+                    <span class="star-count" id="star-count" hidden><svg class="icon icon-xs"><use href="#i-star"/></svg><span></span></span>
+                </a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
+    <main class="page">
+        <section class="intro">
+            <h1>From CVEs to adversary techniques and countermeasures</h1>
+            <p>Paste a list of CVEs to trace them through <span class="kw" data-kind="CWE">CWE</span>, <span class="kw" data-kind="CAPEC">CAPEC</span> and <span class="kw" data-kind="ATTACK">MITRE ATT&amp;CK</span>, then see matching <span class="kw" data-kind="D3FEND">D3FEND</span> defenses and <span class="kw" data-kind="ATLAS">ATLAS</span> techniques.</p>
+        </section>
 
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-sm-12">
-                <p class="text-center text-secondary">Type a list of CVEs (step 1), click on the Generate button (step
-                    2) to compute CWE, CAPEC, and Techniques, and draw the MITRE ATT&CK / MITRE D3FEND matrixes.</p>
-                <p class="text-center"><button class="btn btn-outline-secondary" type="button" onclick="example()">Try
-                        an example</button></p>
-            </div>
-        </div>
-        <div class="row mx-3">
-            <div class="col-lg-2 col-md-12">
-                <h4 class="text-center">1. List of CVEs</h4>
-                <div class="card column">
-                    <div class="card-body" placeholder="CVE-2024-37079..." contenteditable="true" id="cves">
+        <section class="workspace">
+            <!-- Input panel -->
+            <form class="card input-card" id="input-form" autocomplete="off">
+                <div class="card-head">
+                    <label for="cves" class="card-title">CVE list</label>
+                    <span class="chip" id="cve-count" aria-live="polite">0 CVEs</span>
+                </div>
+
+                <div class="dropzone" id="dropzone">
+                    <textarea id="cves" spellcheck="false"
+                        placeholder="CVE-2024-37079&#10;CVE-2018-17924&#10;&#10;Paste any text: CVE IDs are extracted automatically. You can also drop a .txt or .csv file here."></textarea>
+                    <div class="dropzone-hint" aria-hidden="true">Drop file to import CVEs</div>
+                </div>
+
+                <div class="inline-actions">
+                    <button type="button" class="btn-link" id="btn-example">Try an example</button>
+                    <button type="button" class="btn-link" id="btn-clear" hidden>Clear</button>
+                </div>
+
+                <fieldset class="field">
+                    <legend class="field-label">Matrices</legend>
+                    <div class="segmented" role="radiogroup" id="layer-type">
+                        <label class="seg-option seg-wide">
+                            <input type="radio" name="layer" value="enterprise-defend" checked>
+                            <span><strong>Enterprise</strong> + D3FEND + ATLAS</span>
+                        </label>
+                        <label class="seg-option">
+                            <input type="radio" name="layer" value="enterprise">
+                            <span>Enterprise</span>
+                        </label>
+                        <label class="seg-option">
+                            <input type="radio" name="layer" value="mobile">
+                            <span>Mobile</span>
+                        </label>
+                        <label class="seg-option">
+                            <input type="radio" name="layer" value="ics">
+                            <span>ICS</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="callout callout-warn" id="not-found" hidden>
+                    <svg class="icon"><use href="#i-alert"/></svg>
+                    <div>
+                        <strong>Not in the database</strong>
+                        <p id="not-found-list"></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-12 d-flex align-items-center process">
-                <div class="row mx-auto process-row" style="padding-right: 4%;">
-                    <button type="button" class="btn btn-primary mx-auto" onclick="process()">2. Generate</button>
-                    <select id="layer_type" class="form-select mt-2 text-center bg-secondary-subtle">
-                        <option value="enterprise-defend">ATT&CK Enterprise + D3FEND + ATLAS</option>
-                        <option value="enterprise">ATT&CK Enterprise</option>
-                        <option value="mobile">ATT&CK Mobile</option>
-                        <option value="ics">ATT&CK ICS</option>
-                    </select>
-                    <button type="button" class="btn btn-outline-secondary mx-auto mt-2" onclick="share()">Share current
-                        config</button>
 
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg" id="btn-generate">
+                        <span class="spinner" aria-hidden="true"></span>
+                        <span class="btn-label">Generate</span>
+                        <kbd class="hide-sm">Ctrl ↵</kbd>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-icon" id="btn-share" title="Copy shareable link" aria-label="Copy shareable link" disabled>
+                        <svg class="icon"><use href="#i-share"/></svg>
+                    </button>
                 </div>
-            </div>
-            <div class="col-lg-7 col-md-12 position-relative bg-white">
-                <div class="mx-3" style="width: 100%; min-height: 400px; background-color: white;" id="container"></div>
-            </div>
-        </div>
-    </div>
+            </form>
 
-    <!-- Tabs Navigation -->
-    <div class="container-fluid mt-4">
-        <ul class="nav nav-tabs d-flex" id="mitreTab" role="tablist">
-            <li class="nav-item flex-fill" role="presentation">
-                <button class="nav-link active" id="attack-tab" data-bs-toggle="tab" data-bs-target="#attack-pane"
-                    type="button" role="tab" aria-controls="attack-pane" aria-selected="true">
-                    <span style="margin-right: 8px;">⚔️</span>MITRE ATT&CK
-                </button>
-            </li>
-            <li class="nav-item flex-fill" role="presentation">
-                <button class="nav-link" id="defend-tab" data-bs-toggle="tab" data-bs-target="#defend-pane"
-                    type="button" role="tab" aria-controls="defend-pane" aria-selected="false">
-                    <span style="margin-right: 8px;">🛡️</span>MITRE D3FEND
-                </button>
-            </li>
-            <li class="nav-item flex-fill" role="presentation">
-                <button class="nav-link" id="atlas-tab" data-bs-toggle="tab" data-bs-target="#atlas-pane"
-                    type="button" role="tab" aria-controls="atlas-pane" aria-selected="false">
-                    <span style="margin-right: 8px;">🤖</span>MITRE ATLAS
-                </button>
-            </li>
-        </ul>
+            <!-- Flow panel -->
+            <section class="card flow-card" aria-labelledby="flow-title">
+                <div class="card-head flow-head">
+                    <div>
+                        <h2 class="card-title" id="flow-title">Data flow</h2>
+                        <p class="card-sub" id="flow-sub">Each column is one framework. Click a node or link to isolate its paths.</p>
+                    </div>
+                    <div class="toolbar" id="flow-tools" hidden>
+                        <button class="btn btn-ghost btn-sm btn-icon" id="flow-save" title="Save as PNG" aria-label="Save as PNG"><svg class="icon"><use href="#i-image"/></svg></button>
+                        <button class="btn btn-ghost btn-sm btn-icon" id="flow-full" title="Fullscreen" aria-label="Fullscreen"><svg class="icon"><use href="#i-expand"/></svg></button>
+                    </div>
+                </div>
 
-        <!-- Tabs Content -->
-        <div class="tab-content" id="mitreTabContent">
-            <!-- MITRE ATT&CK Tab -->
-            <div class="tab-pane fade show active" id="attack-pane" role="tabpanel" aria-labelledby="attack-tab">
-                <div class="container-fluid px-3">
-                    <!-- Summary legend for ATT&CK -->
-                    <div id="attack-summary" class="mt-3" style="
-                        width: 100%;
-                        margin-bottom: 16px; 
-                        padding: 12px; 
-                        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); 
-                        border-radius: 8px; 
-                        border-left: 4px solid #ff9800;
-                        font-family: 'Roboto', sans-serif;
-                        display: none;
-                    ">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                            <div>
-                                <h4 style="margin: 0; color: #e65100; font-weight: 600;">⚔️ MITRE ATT&CK Matrix</h4>
-                                <p style="margin: 4px 0 0 0; color: #424242; font-size: 14px;">Attack techniques mapped
-                                    from your CVE analysis</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 14px; color: #424242;" id="attack-stats">
-                                    <strong id="attack-techniques-count">0</strong> techniques affected • <strong
-                                        id="attack-hits-count">0</strong> total hits
-                                </div>
-                            </div>
+                <div class="legend" id="flow-legend" role="group" aria-label="Framework layers"></div>
+
+                <div class="filter-bar" id="filter-bar" hidden>
+                    <span>Showing paths through</span>
+                    <span class="chip chip-strong" id="filter-label"></span>
+                    <button class="btn-link" id="filter-clear">Show all <kbd>Esc</kbd></button>
+                </div>
+
+                <div class="flow-body" id="flow-body">
+                    <div class="empty-state" id="flow-empty">
+                        <div class="pipeline" aria-hidden="true">
+                            <span class="pipe-node" data-kind="CVE">CVE</span>
+                            <span class="pipe-arrow"></span>
+                            <span class="pipe-node" data-kind="CWE">CWE</span>
+                            <span class="pipe-arrow"></span>
+                            <span class="pipe-node" data-kind="CAPEC">CAPEC</span>
+                            <span class="pipe-arrow"></span>
+                            <span class="pipe-node" data-kind="ATTACK">ATT&amp;CK</span>
+                            <span class="pipe-arrow"></span>
+                            <span class="pipe-stack">
+                                <span class="pipe-node" data-kind="D3FEND">D3FEND</span>
+                                <span class="pipe-node" data-kind="ATLAS">ATLAS</span>
+                            </span>
                         </div>
+                        <p>Add CVEs and press <strong>Generate</strong> to draw the flow.</p>
                     </div>
-
-                    <div style="height: 800px; position: relative; width: 100%;" id="frame" hidden>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MITRE D3FEND Tab -->
-            <div class="tab-pane fade" id="defend-pane" role="tabpanel" aria-labelledby="defend-tab">
-                <div class="container-fluid px-3">
-                    <div id="defend_matrix" class="mt-3" style="display:none; overflow-x:auto; white-space:nowrap;">
-                    </div>
-                </div>
-            </div>
-
-            <!-- MITRE ATLAS Tab -->
-            <div class="tab-pane fade" id="atlas-pane" role="tabpanel" aria-labelledby="atlas-tab">
-                <div class="container-fluid px-3">
-                    <!-- Summary legend for ATLAS -->
-                    <div id="atlas-summary" class="mt-3" style="
-                        width: 100%;
-                        margin-bottom: 16px;
-                        padding: 12px;
-                        background: linear-gradient(135deg, #ede7f6 0%, #d1c4e9 100%);
-                        border-radius: 8px;
-                        border-left: 4px solid #673ab7;
-                        font-family: 'Roboto', sans-serif;
-                        display: none;
-                    ">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                            <div>
-                                <h4 style="margin: 0; color: #4527a0; font-weight: 600;">🤖 MITRE ATLAS Matrix</h4>
-                                <p style="margin: 4px 0 0 0; color: #424242; font-size: 14px;">Adversarial AI techniques
-                                    mapped from your CVE analysis</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 14px; color: #424242;" id="atlas-stats">
-                                    <strong id="atlas-techniques-count">0</strong> techniques affected • <strong
-                                        id="atlas-hits-count">0</strong> total hits
-                                </div>
-                            </div>
+                    <div class="loading-state" id="flow-loading" hidden>
+                        <div class="skeleton-flow" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span><span></span>
                         </div>
+                        <p id="loading-text" aria-live="polite">Loading databases…</p>
                     </div>
+                    <div id="container" class="chart" role="img" aria-label="Sankey diagram from CVEs to MITRE techniques"></div>
+                </div>
 
-                    <div style="height: 800px; position: relative; width: 100%;" id="atlas-frame" hidden>
+                <dl class="stats" id="stats" hidden></dl>
+            </section>
+        </section>
+
+        <!-- Matrices -->
+        <section class="results" id="results" hidden>
+            <div class="tabs" role="tablist" aria-label="Matrices">
+                <button class="tab" role="tab" id="attack-tab" aria-controls="attack-pane" aria-selected="true" data-kind="ATTACK">
+                    <span class="dot"></span>MITRE ATT&amp;CK <span class="tab-count" id="attack-tab-count"></span>
+                </button>
+                <button class="tab" role="tab" id="defend-tab" aria-controls="defend-pane" aria-selected="false" tabindex="-1" data-kind="D3FEND">
+                    <span class="dot"></span>MITRE D3FEND <span class="tab-count" id="defend-tab-count"></span>
+                </button>
+                <button class="tab" role="tab" id="atlas-tab" aria-controls="atlas-pane" aria-selected="false" tabindex="-1" data-kind="ATLAS">
+                    <span class="dot"></span>MITRE ATLAS <span class="tab-count" id="atlas-tab-count"></span>
+                </button>
+            </div>
+
+            <!-- ATT&CK -->
+            <div class="card pane" role="tabpanel" id="attack-pane" aria-labelledby="attack-tab">
+                <div class="pane-head">
+                    <div>
+                        <h3>Attack techniques</h3>
+                        <p class="card-sub"><span id="attack-stats">–</span>. Select techniques in the matrix to trace them back to their CVEs.</p>
+                    </div>
+                    <div class="toolbar">
+                        <span class="selection-count" id="attack-selected">0 selected</span>
+                        <button class="btn btn-primary btn-sm" data-subgraph="attack" disabled><svg class="icon"><use href="#i-flow"/></svg>Trace selection</button>
+                        <button class="btn btn-ghost btn-sm" data-clear="attack" disabled>Clear</button>
+                        <span class="toolbar-sep"></span>
+                        <button class="btn btn-ghost btn-sm btn-icon" data-download="attack" title="Download Navigator layer (.json)" aria-label="Download Navigator layer"><svg class="icon"><use href="#i-download"/></svg></button>
+                        <button class="btn btn-ghost btn-sm btn-icon" data-fullscreen="frame" title="Fullscreen" aria-label="Fullscreen"><svg class="icon"><use href="#i-expand"/></svg></button>
                     </div>
                 </div>
+                <div class="frame" id="frame"></div>
+            </div>
+
+            <!-- D3FEND -->
+            <div class="card pane" role="tabpanel" id="defend-pane" aria-labelledby="defend-tab" hidden>
+                <div class="pane-head">
+                    <div>
+                        <h3>Defensive countermeasures</h3>
+                        <p class="card-sub"><span id="defend-stats">–</span>. Click techniques to select them.</p>
+                    </div>
+                    <div class="toolbar">
+                        <label class="switch">
+                            <input type="checkbox" id="defend-only-hits" checked>
+                            <span class="switch-track"></span>
+                            Affected only
+                        </label>
+                        <span class="toolbar-sep"></span>
+                        <span class="selection-count" id="defend-selected">0 selected</span>
+                        <button class="btn btn-primary btn-sm" data-subgraph="defend" disabled><svg class="icon"><use href="#i-flow"/></svg>Trace selection</button>
+                        <button class="btn btn-ghost btn-sm" data-clear="defend" disabled>Clear</button>
+                        <span class="toolbar-sep"></span>
+                        <button class="btn btn-ghost btn-sm btn-icon" data-fullscreen="defend_matrix" title="Fullscreen" aria-label="Fullscreen"><svg class="icon"><use href="#i-expand"/></svg></button>
+                    </div>
+                </div>
+                <div class="heat-legend" aria-hidden="true">
+                    <span>Fewer hits</span><span class="heat-bar"></span><span>More hits</span>
+                </div>
+                <div id="defend_matrix" class="d3f-matrix"></div>
+            </div>
+
+            <!-- ATLAS -->
+            <div class="card pane" role="tabpanel" id="atlas-pane" aria-labelledby="atlas-tab" hidden>
+                <div class="pane-head">
+                    <div>
+                        <h3>Adversarial AI techniques</h3>
+                        <p class="card-sub"><span id="atlas-stats">–</span>. Select techniques in the matrix to trace them back to their CVEs.</p>
+                    </div>
+                    <div class="toolbar">
+                        <span class="selection-count" id="atlas-selected">0 selected</span>
+                        <button class="btn btn-primary btn-sm" data-subgraph="atlas" disabled><svg class="icon"><use href="#i-flow"/></svg>Trace selection</button>
+                        <button class="btn btn-ghost btn-sm" data-clear="atlas" disabled>Clear</button>
+                        <span class="toolbar-sep"></span>
+                        <button class="btn btn-ghost btn-sm btn-icon" data-download="atlas" title="Download Navigator layer (.json)" aria-label="Download Navigator layer"><svg class="icon"><use href="#i-download"/></svg></button>
+                        <button class="btn btn-ghost btn-sm btn-icon" data-fullscreen="atlas-frame" title="Fullscreen" aria-label="Fullscreen"><svg class="icon"><use href="#i-expand"/></svg></button>
+                    </div>
+                </div>
+                <div class="frame" id="atlas-frame"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Data refreshed daily from NVD, MITRE CWE, CAPEC, ATT&amp;CK, D3FEND and ATLAS. <span id="last-update"></span></p>
+        <p><a href="https://github.com/Galeax/CVE2CAPEC" target="_blank" rel="noopener">Source on GitHub</a> · GPL-3.0 · <a href="https://galeax.com" target="_blank" rel="noopener">Galeax</a></p>
+    </footer>
+
+    <!-- Sub-graph dialog -->
+    <dialog class="dialog" id="modal" aria-labelledby="modal-title">
+        <div class="dialog-head">
+            <div>
+                <h2 id="modal-title">Trace to CVEs</h2>
+                <p class="card-sub" id="modal-sub"></p>
+            </div>
+            <div class="toolbar">
+                <button class="btn btn-ghost btn-sm btn-icon" id="modal-save" title="Save as PNG" aria-label="Save as PNG"><svg class="icon"><use href="#i-image"/></svg></button>
+                <button class="btn btn-ghost btn-sm btn-icon" id="modal-close" title="Close" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
             </div>
         </div>
-    </div>
-    <div class="modal fade" role="dialog" id="modal" tabindex="-1" aria-labelledby="modal">
-        <div class="modal-dialog" role="document" style="max-width: 100%; margin: 2%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sub graph for selected Techniques</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div id="subgraph" style="width: 100%; height: 100%; background-color: white;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div id="subgraph" class="chart"></div>
+    </dialog>
 
+    <div class="toaster" id="toaster" aria-live="polite"></div>
 </body>
-
-<!-- JavaScript Files -->
-<script src="js/mitre-attack.js"></script>
-<script src="js/mitre-defend.js"></script>
-<script src="js/mitre-atlas.js"></script>
-<script src="js/global.js"></script>
 
 </html>
