@@ -706,14 +706,19 @@ function setSelection(kind, items) {
     updateSelectionUI(kind);
 }
 
+// The Navigators pass a Set of "techniqueID^tactic" keys
+function navigatorIds(techniques) {
+    return Array.from(techniques || [], t => String(t).split('^')[0]).filter(Boolean);
+}
+
 // Called from the ATT&CK Navigator iframe on technique selection (see mitre/main.js)
 function mitre_selection(techniques) {
-    setSelection('attack', (techniques || []).map(t => String(t).split('^')[0]).filter(Boolean));
+    setSelection('attack', navigatorIds(techniques));
 }
 
 // Called from the ATLAS Navigator iframe on technique selection (see atlas/main.js)
 function atlas_selection(techniques) {
-    setSelection('atlas', (techniques || []).map(t => String(t).split('^')[0]).filter(Boolean));
+    setSelection('atlas', navigatorIds(techniques));
 }
 
 // Expand parent techniques to include their sub-techniques present in the graph
