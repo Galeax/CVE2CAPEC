@@ -97,6 +97,12 @@ python technique2defend.py
 python technique2atlas.py
 ```
 
+**7. Build the lightweight CVE → CWE index used by the web interface**
+```sh
+python build_web_index.py        # years of the new CVEs
+python build_web_index.py --all  # full rebuild
+```
+
 ## Sources
 
 - [MITRE ATT&CK](https://attack.mitre.org/) — Apache 2.0
